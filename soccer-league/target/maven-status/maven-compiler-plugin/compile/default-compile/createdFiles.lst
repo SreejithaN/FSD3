@@ -1,4 +1,2 @@
-comm\example\model\League.class
-comm\example\controller\AddLeagueServlet.class
-comm\example\view\ListLeagueServlet.class
-comm\example\customer\AddCustomerServlet.class
+comm/example/model/League.class
+comm/example/view/ListLeagueServlet.class

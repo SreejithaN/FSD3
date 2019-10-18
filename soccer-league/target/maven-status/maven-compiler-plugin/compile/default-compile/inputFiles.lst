@@ -1,4 +1,2 @@
-C:\Users\b8ibmjava03\Documents\soccer-league\src\main\java\comm\example\model\League.java
-C:\Users\b8ibmjava03\Documents\soccer-league\src\main\java\comm\example\customer\AddCustomerServlet.java
-C:\Users\b8ibmjava03\Documents\soccer-league\src\main\java\comm\example\view\ListLeagueServlet.java
-C:\Users\b8ibmjava03\Documents\soccer-league\src\main\java\comm\example\controller\AddLeagueServlet.java
+/home/nilay/eclipse-workspace/soccer-league/src/main/java/comm/example/view/ListLeagueServlet.java
+/home/nilay/eclipse-workspace/soccer-league/src/main/java/comm/example/model/League.java

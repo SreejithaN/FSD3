@@ -40,6 +40,20 @@
 		<description></description>
 		<servlet-class>comm.example.view.SuccessServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>AddLeagueViewServlet</servlet-name>
+		<display-name>AddLeagueViewServlet</display-name>
+		<description></description>
+		<servlet-class>comm.example.view.AddLeagueServlet</servlet-class>
+		<init-param>
+		
+		<param-name>season-list</param-name>
+		<param-value>Unknown,Autumn,Winter,Summer,Spring</param-value>
+		
+		
+		
+		</init-param>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ListLeagueServlet</servlet-name>
 		<url-pattern>/list_leagues.view</url-pattern>
@@ -63,6 +77,10 @@
 	<servlet-mapping>
 		<servlet-name>SuccessServlet</servlet-name>
 		<url-pattern>/success.view</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddLeagueViewServlet</servlet-name>
+		<url-pattern>/add_league.view</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 
