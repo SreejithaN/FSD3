@@ -39,6 +39,8 @@ public class AddLeagueServlet extends HttpServlet {
 			throws ServletException, IOException {
 		errors = new ArrayList<String>();
 		String sYear = request.getParameter("year");
+		
+		
 		try {
 			year = Integer.parseInt(sYear);
 		} catch (Exception e) {
@@ -57,13 +59,15 @@ public class AddLeagueServlet extends HttpServlet {
 			request.setAttribute("ERROR", errors);
 			RequestDispatcher view = request.getRequestDispatcher("add_league.view");
 			view.forward(request, response);
-		} else {
+		}
+		
+		else {
 
 			League l = new League(season, year, title);
 			request.setAttribute("SUCCESS", l);
 			dao = new LeagueDaoImpl();
 			dao.createLeague(l);
-			RequestDispatcher view = request.getRequestDispatcher("success.view");
+			RequestDispatcher view = request.getRequestDispatcher("add_league.view");
 			view.forward(request, response);
 		}
 

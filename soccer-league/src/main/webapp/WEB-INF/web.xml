@@ -54,6 +54,12 @@
 		
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>DeleteServlet</servlet-name>
+		<display-name>DeleteServlet</display-name>
+		<description></description>
+		<servlet-class>comm.example.view.DeleteServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ListLeagueServlet</servlet-name>
 		<url-pattern>/list_leagues.view</url-pattern>
@@ -81,6 +87,10 @@
 	<servlet-mapping>
 		<servlet-name>AddLeagueViewServlet</servlet-name>
 		<url-pattern>/add_league.view</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteServlet</servlet-name>
+		<url-pattern>/delete_league.view</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 

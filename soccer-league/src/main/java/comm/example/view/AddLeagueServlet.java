@@ -59,7 +59,7 @@ public class AddLeagueServlet extends HttpServlet {
 				out.println("<font color='red'>" + str + "</font><br/>");
 			}
 		}
-
+		
 		out.println("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"UTF-8\">\n"
 				+ "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n"
 				+ "<title>Insert title here</title>\n" + "</head>\n" + "<body>\n" + "<!-- Default form login -->\n"
@@ -89,11 +89,11 @@ public class AddLeagueServlet extends HttpServlet {
 		@SuppressWarnings("unchecked")
 		List<League> leagues = (List<League>) session.createQuery("from League").list();
 		
-		out.println("<html><title>List All Available League</title><body><table border='1'><tr><td>Season</td><td>Title</td><td>Year</td></tr>");
+		out.println("<html><title>List All Available League</title><body><table border='1' align='center'><tr><td>Season</td><td>Title</td><td>Year</td><td colspan=\"2\">Options</td></tr>");
 		
 		for(League l:leagues)
 		{
-			out.println("<tr><td>"+l.getSeason()+"</td><td>"+l.getTitle()+"</td><td>"+l.getYear()+"</td></tr>");
+			out.println("<tr><td>"+l.getSeason()+"</td><td>"+l.getTitle()+"</td><td>"+l.getYear()+"</td><td><a href=\"add_league.view\">Edit</td><td><a href=\"delete_league.view\">Delete</tr>");
 		}
 		out.println("</table><a href='index.html'>Go To Home Page</a></body></html>");
 		
