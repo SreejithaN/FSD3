@@ -5,4 +5,5 @@ import comm.example.model.League;
 public interface LeagueDao {
 	
 	public void createLeague(League league);
+	public void deleteLeague(League league);
 }

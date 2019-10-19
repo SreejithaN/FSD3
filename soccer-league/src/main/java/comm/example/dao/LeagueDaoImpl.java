@@ -26,5 +26,31 @@ public class LeagueDaoImpl implements LeagueDao {
 			session.close();
 		}
 	}
+	public void deleteLeague(League league) {
+		// TODO Auto-generated method stub
+		try {
+
+			session.beginTransaction();
+
+			int theId = 1;
+			League tempInstructor = session.get(League.class, theId);
+
+			System.out.println("Found League: " + tempInstructor);
+
+			if (tempInstructor != null) {
+
+				System.out.println("Deleting: " + tempInstructor);
+
+				session.delete(tempInstructor);
+			}
+
+			session.getTransaction().commit();
+
+			System.out.println("Done!");
+		} finally {
+			factory.close();
+		}
+	}
+
 
 }

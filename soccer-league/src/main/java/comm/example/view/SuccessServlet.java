@@ -3,6 +3,7 @@ package comm.example.view;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +32,8 @@ public class SuccessServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Object obj=request.getAttribute("SUCCESS");
 		League l=(League)obj;
-		out.println("Leage added: "+l.getTitle()+" "+l.getSeason()+""+l.getYear());
-
+		out.println("Leauge added: "+l.getTitle()+" "+l.getSeason()+""+l.getYear());
+		
 	}
 
 }

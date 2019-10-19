@@ -1,5 +1,4 @@
 package comm.example.view;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -10,7 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
 import comm.example.model.League;
+import comm.example.factory.HibernateUtilFactory;
 
 public class ListLeagueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,15 +32,19 @@ private List<League> list=null;
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-		list=new ArrayList<League>();
-		list.add(new League("Autumn",2019,"Women's Cricket"));
-		list.add(new League("Summer", 2019, "Beach Volley"));
-		list.add(new League("Winter", 2019, "Basket Ball"));
+		response.setContentType("text/html");
+		
+		SessionFactory factory = HibernateUtilFactory.getSessionFactory();
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<League> leagues = (List<League>) session.createQuery("from League").list();
+		
 		out.println("<html><title>List All Available League</title><body><table border='1'><tr><td>Season</td><td>Title</td><td>Year</td></tr>");
 		
-		for(League l:list)
+		for(League l:leagues)
 		{
 			out.println("<tr><td>"+l.getSeason()+"</td><td>"+l.getTitle()+"</td><td>"+l.getYear()+"</td></tr>");
 		}

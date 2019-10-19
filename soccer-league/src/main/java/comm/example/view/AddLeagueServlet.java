@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import comm.example.factory.HibernateUtilFactory;
+import comm.example.model.League;
+
 public class AddLeagueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<String> l = null;
@@ -74,7 +80,23 @@ public class AddLeagueServlet extends HttpServlet {
 		out.println("\n" + "    <!-- Sign in button -->\n"
 				+ "    <button class=\"btn btn-info btn-block my-4\" type=\"submit\">Add A New League</button>\n" + "\n"
 				+ "\n" + "</form>\n" + "\n" + "</body>\n" + "</html>");
-
+		
+		
+		SessionFactory factory = HibernateUtilFactory.getSessionFactory();
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<League> leagues = (List<League>) session.createQuery("from League").list();
+		
+		out.println("<html><title>List All Available League</title><body><table border='1'><tr><td>Season</td><td>Title</td><td>Year</td></tr>");
+		
+		for(League l:leagues)
+		{
+			out.println("<tr><td>"+l.getSeason()+"</td><td>"+l.getTitle()+"</td><td>"+l.getYear()+"</td></tr>");
+		}
+		out.println("</table><a href='index.html'>Go To Home Page</a></body></html>");
+		
 	}
 
 }
