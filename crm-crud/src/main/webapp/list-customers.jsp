@@ -20,7 +20,7 @@
 	<div class="container">
 		<h2>CRM/Customer Management Systems</h2>
 
-		<%
+	<h5>	<%
       if (session != null) {
     	  out.println(session.getId());
          if (session.getAttribute("user") != null) {
@@ -30,13 +30,13 @@
             response.sendRedirect("index.jsp");
          }
       }
-   %>
+   %></h5>
 		<div id="content">
 
 			<!-- put new button: Add Customer -->
 
-			<a href="add-customer.jsp" class="btn btn-info" role="button">Add customer</a>  <br/><br/>  
-			
+			<a href="add-customer.jsp" class="btn btn-info" role="button">Add customer</a>  
+			&nbsp;&nbsp;<a href="index1.jsp" class="btn btn-info" role="button">Shopping Cart</a>  <br/><br/> 
 			<!-- Search form --><form action="search.do">
 		<div class="md-form mt-0">
   		<input type="text" placeholder="Search" name="search"/>&nbsp;&nbsp;&nbsp;<input class="btn btn-info" type="submit" value ="submit"></form>
@@ -53,7 +53,20 @@
     </div>
   </div><br/><br/>
 		
-		
+		<div>
+			<form action="sort.do">
+				Sort name in: <select
+					name="sort">
+					<option>Select</option>
+					<option>AscendingFirstName</option>
+					<option>AscendingLastName</option>
+					<option>AscendingEmail</option>
+					<option>DescendingFirstName </option>
+					<option>DescendingLastName </option>
+					<option>DescendingEmail </option>
+				</select> <input class="btn btn-info" type="submit" value="Sort">
+			</form>
+		</div><br/><br/>
 		
 		<table class="table table-striped">
 			<thead >
@@ -84,7 +97,6 @@
 												<a href="${deleteLink}"
 							onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
 							<a href="${updateLink}">Update</a>
-							
 						</td>
 					</tr>
 				</c:forEach>

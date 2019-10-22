@@ -14,4 +14,5 @@ public interface CustomerDAO {
 	public List<Customer> findCustomer(String str);
 	public List<Customer> OrderBy(String str);
 	public List<Customer> OrderByDesc(String str);
+	public List<Customer> sortCustomer(String str);
 }

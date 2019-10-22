@@ -22,7 +22,7 @@ public class LoginController extends HttpServlet {
       PrintWriter out = response.getWriter();
       String un = request.getParameter("uname");
       String pwd = request.getParameter("pass");
-      if (un.equals("dummy")) {
+      if (un.equals("sreejitha")) {
          out.print("Welcome, " + un);
          HttpSession session = request.getSession(true); // reuse existing
                                              // session if exist

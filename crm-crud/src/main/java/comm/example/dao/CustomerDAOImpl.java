@@ -89,6 +89,33 @@ public class CustomerDAOImpl implements CustomerDAO {
 		session.getTransaction().commit();
 		return query.getResultList();
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Customer> sortCustomer(String str) {
+		session = factory.openSession();
+		session.getTransaction().begin();
+		Query query = null;
+		if (str.equals("AscendingFirstName")) {
+			query = session.createQuery("FROM Customer order by firstName ASC");
+		}
+		if (str.equals("AscendingLastName")) {
+			query = session.createQuery("FROM Customer order by lastName ASC");
+		}
+		if (str.equals("AscendingEmail")) {
+			query = session.createQuery("FROM Customer order by email ASC");
+		}
+		if (str.equals("DescendingFirstName")) {
+			query = session.createQuery("FROM Customer order by firstName DESC");
+		}
+		if (str.equals("DescendingLastName")) {
+			query = session.createQuery("FROM Customer order by lastName DESC");
+		}
+		if (str.equals("DescendingEmail")) {
+			query = session.createQuery("FROM Customer order by email DESC");
+		}
+		session.getTransaction().commit();
+		return query.getResultList();
+	}
 
 }
 
