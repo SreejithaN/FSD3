@@ -20,7 +20,17 @@
 	<div class="container">
 		<h2>CRM/Customer Management Systems</h2>
 
-
+		<%
+      if (session != null) {
+    	  out.println(session.getId());
+         if (session.getAttribute("user") != null) {
+            String name = (String) session.getAttribute("user");
+            out.print("Hello, " + name + "  Welcome to ur Profile");
+         } else {
+            response.sendRedirect("index.jsp");
+         }
+      }
+   %>
 		<div id="content">
 
 			<!-- put new button: Add Customer -->
@@ -29,7 +39,7 @@
 			
 			<!-- Search form --><form action="search.do">
 		<div class="md-form mt-0">
-  		<input type="text" placeholder="Search" name="search"/>&nbsp;&nbsp;&nbsp;<input type="submit" value ="submit"></form>
+  		<input type="text" placeholder="Search" name="search"/>&nbsp;&nbsp;&nbsp;<input class="btn btn-info" type="submit" value ="submit"></form>
 		</div><br/></div>
 	
 		
@@ -39,7 +49,7 @@
     </button>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="order.do" name="firstName">Ascending Order</a>
-      <a class="dropdown-item" href="order_desc.do" name="firstName">Descending Oreder</a>
+      <a class="dropdown-item" href="order_desc.do" name="firstName">Descending Order</a>
     </div>
   </div><br/><br/>
 		
@@ -80,7 +90,10 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<form action="Logout" method="post">
+      <input class="btn btn-info" type="submit" value="Logout">
+   </form>
 	</div>
-
+	
 </body>
 </html>
