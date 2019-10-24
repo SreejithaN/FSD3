@@ -1,5 +1,6 @@
 package comm.example;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,12 +19,17 @@ public class Tester {
 			CustomerDAO customerDAO = context.getBean("customerDao", CustomerDAOImpl.class);
 
 			customerDAO.createCustomer(new Customer("Sourav", "Ganguly", "sourav@luv2code.com"));
+			customerDAO.deleteCustomer(5);
 			System.out.println("ok!");
+			System.out.println("Deleted successfully");
 			List<Customer> list=customerDAO.getAllCustomer();
-			for(Customer c:list) {
-				System.out.println(c.getFirstName()+" "+c.getLastName()+" "+c.getEmail());
+			Iterator<Customer> i=list.iterator();
+			while(i.hasNext()) {
+				Customer c=i.next();
+				System.out.println(c.getFirstName()+" , "+c.getLastName()+","+c.getEmail());
 			}
-
+			customerDAO.updateCustomer(new Customer("Shefali", "bs", "sourav@luv2code.com"));
+			System.out.println("Updated Successfully!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

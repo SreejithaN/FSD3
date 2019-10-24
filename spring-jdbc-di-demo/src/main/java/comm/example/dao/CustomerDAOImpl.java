@@ -10,15 +10,18 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import comm.example.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 public class CustomerDAOImpl implements CustomerDAO {
-	private DataSource dataSource=null;
+		/*private DataSource dataSource=null;
 	@Override
 	public void createCustomer(Customer customer) {
 		Connection connection=null;
@@ -80,5 +83,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		this.dataSource = dataSource;
 	}
+*/
 
+	private JdbcTemplate jdbcTemplate;
+
+	@Override
+	public void createCustomer(Customer customer) {
+		jdbcTemplate.update("insert into customer1(first_name,last_name,email) values (?,?,?)",
+				customer.getFirstName(),customer.getLastName(),customer.getEmail());
+		
+	}
+
+	@Override
+	public List<Customer> getAllCustomer() {
+		return jdbcTemplate.query("select first_name,last_name,email from customer1", new CustomerMAper());
+	}
+
+	@Override
+	public void deleteCustomer(int id) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update("delete from customer1 where id=5");
+	}
+
+	@Override
+	public void updateCustomer(Customer customer) {
+		jdbcTemplate.update("update customer1 set first_name=?,last_name=?,email=? where id=1",
+				customer.getFirstName(),customer.getLastName(),customer.getEmail());
+	}
+	
 }

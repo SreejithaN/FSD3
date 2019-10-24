@@ -5,17 +5,23 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	<bean name="customerDao" class="comm.example.dao.CustomerDAOImpl">
-		<constructor-arg name="dataSource" ref="dbSource" />
-	</bean>
+	
 	<bean name="dbSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/hr" />
-		<property name="username" value="root" />
-		<property name="password" value="pass@word1" />
+			value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
-
-
+	
+	<bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	
+	<property name="dataSource" ref="dbSource"/>
+	
+	</bean>
+<bean name="customerDao" class="comm.example.dao.CustomerDAOImpl">
+	<constructor-arg name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+<context:property-placeholder location="classpath:jdbc.properties"/>
 </beans>
